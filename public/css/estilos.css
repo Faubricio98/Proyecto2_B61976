@@ -1,0 +1,20 @@
+button#createUser:hover, #createProd:hover, #createCatg:hover, #createProm:hover, 
+#btnInicio:hover, #btnBuscar:hover, #btnPromocion:hover{
+    color: blue;
+    border-color: blue;
+}
+
+button#logInAdm, #btnCreate, #logInClient, #signInClient, #signInUser{
+    margin-top: 1em;
+    width: 100%;
+}
+
+button#btnInicio, #btnBuscar, #btnPromocion{
+    margin-top: 1em;
+    width: 25%;
+}
+
+input[type= "date"], input[type= "file"], input[type= "number"], input[type= "password"], 
+input[type= "text"], textarea[type= "text"]{
+    margin-top: 1em;
+}
