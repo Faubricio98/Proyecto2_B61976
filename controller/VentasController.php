@@ -94,7 +94,7 @@ class VentasController{
             if($cant == 1){
                 $favorito->actualizarFavorito($_POST['cod']);
             }
-            echo 'Registrado';
+            echo 'Registrado como favorito';
         }else{
             //si ya existía como favorito, se retira
             if($cant == 1){
@@ -104,9 +104,39 @@ class VentasController{
                 //se debe de eliminar uno en la tabla de favoritos
                 $favorito->eliminarFavorito($_POST['cod']);
 
-                echo 'Eliminado';
+                echo 'Eliminado de favoritos';
             }
         }
+    }
+
+    public function guardarCarritoVentas(){
+        require 'model/VentasModel.php';
+        $carrito = new VentasModel();
+        //buscamos si el cliente tiene el articulo en el carrito
+        $data = $carrito->buscarCarritoCliente($_POST['user'], $_POST['cod']);
+        $cant = '';
+        foreach ($data as $item) {
+            $cant = $item[0];
+        }
+
+        //si no estaba en el carrito, debemos agregarlo
+        if($cant == 0){
+            $carrito->agregarCarritoCliente($_POST['user'], $_POST['cod']);
+            echo 'Agregado al carrito';
+        }else{
+            if($cant == 1){
+                $carrito->eliminarCarritoCliente($_POST['user'], $_POST['cod']);
+                echo 'Eliminado del carrito';
+            }
+        }
+    }
+
+    public function mostrarArticuloVentas(){
+        require 'model/VentasModel.php';
+        $producto = new VentasModel();
+        $data['articulo'] = $producto->buscarArticulo($_POST['cod']);
+
+        $this->view->show("mostrarArticulo.php", $data);
     }
 
 }
