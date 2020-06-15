@@ -139,6 +139,16 @@ class VentasController{
         $this->view->show("mostrarArticulo.php", $data);
     }
 
+    public function direccionClienteVentas(){
+        require 'model/VentasModel.php';
+        $direccion = new VentasModel();
+        //buscamos si el cliente tiene el articulo en el carrito
+        $data = $direccion->direccionCliente($_POST['user']);
+        foreach ($data as $item) {
+            echo $item[2].', '.$item[0];
+        }        
+    }
+
 }
 
 ?>
