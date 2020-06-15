@@ -88,6 +88,32 @@ class VentasModel{
         $consulta= $this->db->prepare("call sp_borrar_favorito('".$cod."')");
         $consulta->execute();
     }
+
+    public function buscarCarritoCliente($user, $cod){
+        $consulta= $this->db->prepare("call sp_get_cliente_carrito('".$user."', '".$cod."')");
+        $consulta->execute();
+        $resultado=$consulta->fetchAll();
+        $consulta->closeCursor();
+        return $resultado;
+    }
+
+    public function agregarCarritoCliente($user, $cod){
+        $consulta= $this->db->prepare("call sp_registrar_cliente_carrito('".$user."', '".$cod."')");
+        $consulta->execute();
+    }
+
+    public function eliminarCarritoCliente($user, $cod){
+        $consulta= $this->db->prepare("call sp_borrar_cliente_carrito('".$user."', '".$cod."')");
+        $consulta->execute();
+    }
+
+    public function buscarArticulo($cod){
+        $consulta= $this->db->prepare("call sp_get_producto('".$cod."')");
+        $consulta->execute();
+        $resultado=$consulta->fetchAll();
+        $consulta->closeCursor();
+        return $resultado;
+    }
 }
 
 ?>

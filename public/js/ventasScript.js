@@ -10,17 +10,49 @@ function btnBuscar() {
 }
 
 function btnComprar(button) {
-    alert(button.id);
+    document.getElementById('actionMenu').innerHTML = '';
+    var spanC = document.getElementById("myUserCliente").innerText;
+    var my_user = spanC.split(' ');
+    parametros = { "user": my_user[1], "cod": button.id }
+    $.ajax(
+        {
+            data: parametros,
+            url: '?controlador=Ventas&accion=mostrarArticuloVentas',
+            type: 'post',
+            beforeSend: function () {
+                $("#actionMenu").html("Cargando ......");
+            }, //antes de enviar
+                    
+            success: function (response) {
+                $("#actionMenu").html(response);
+            } //se ha enviado
+        }
+    );
 }
 
 function btnCarrito(button) { 
-
+    var spanC = document.getElementById("myUserCliente").innerText;
+    var my_user = spanC.split(' ');
+    parametros = { "user": my_user[1], "cod": button.id }
+    $.ajax(
+        {
+            data: parametros,
+            url: '?controlador=Ventas&accion=guardarCarritoVentas',
+            type: 'post',
+            beforeSend: function () {
+                $("#respuesta").html("Carrito ...");
+            }, //antes de enviar
+                    
+            success: function (response) {
+                $("#respuesta").html(response);
+            } //se ha enviado
+        }
+    );
 }
 
 function btnFavorito(button) { 
     var spanC = document.getElementById("myUserCliente").innerText;
     var my_user = spanC.split(' ');
-
     parametros = {"user": my_user[1], "cod": button.id}
     //CREATE PROCEDURE sp_get_favorito()
     $.ajax(
@@ -29,7 +61,7 @@ function btnFavorito(button) {
             url: '?controlador=Ventas&accion=guardarFavoritoVentas',
             type: 'post',
             beforeSend: function () {
-                $("#respuesta").html("Agregando a favoritos ...");
+                $("#respuesta").html("Favorito ...");
             }, //antes de enviar
                     
             success: function (response) {
