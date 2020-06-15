@@ -114,6 +114,14 @@ class VentasModel{
         $consulta->closeCursor();
         return $resultado;
     }
+
+    public function direccionCliente($user){
+        $consulta= $this->db->prepare("call sp_get_direccion('".$user."')");
+        $consulta->execute();
+        $resultado=$consulta->fetchAll();
+        $consulta->closeCursor();
+        return $resultado;
+    }
 }
 
 ?>
