@@ -32,6 +32,19 @@ class VentasController{
         $this->view->show("mostrarFavoritos.php", $art);
     }
 
+    public function mostrarPrimerFavoritoInicioVentas(){
+        require 'model/VentasModel.php';
+        $producto = new VentasModel();
+        $data=$producto->traerPrimerFavorito();
+        $cod = '';
+        foreach ($data as $item) {
+            $cod = $item[0];
+        }
+        
+        $art['fav'] = $producto->traerArticulo($cod);
+        $this->view->show("mostrarFavoritosInicio.php", $art);
+    }
+
     public function mostrarSegundoFavoritoVentas(){
         require 'model/VentasModel.php';
         $producto = new VentasModel();
@@ -43,6 +56,19 @@ class VentasController{
         
         $art['fav'] = $producto->traerArticulo($cod);
         $this->view->show("mostrarFavoritos.php", $art);
+    }
+
+    public function mostrarSegundoFavoritoInicioVentas(){
+        require 'model/VentasModel.php';
+        $producto = new VentasModel();
+        $data=$producto->traerSegundoFavorito();
+        $cod = '';
+        foreach ($data as $item) {
+            $cod = $item[0];
+        }
+        
+        $art['fav'] = $producto->traerArticulo($cod);
+        $this->view->show("mostrarFavoritosInicio.php", $art);
     }
 
     public function mostrarTercerFavoritoVentas(){
@@ -62,6 +88,25 @@ class VentasController{
         
         $art['fav'] = $producto->traerArticulo($cod);
         $this->view->show("mostrarFavoritos.php", $art);
+    }
+
+    public function mostrarTercerFavoritoInicioVentas(){
+        require 'model/VentasModel.php';
+        $producto = new VentasModel();
+        $data=$producto->traerSegundoFavorito();
+        $cant = '';
+        foreach ($data as $item) {
+            $cant = $item[1];
+        }
+
+        $data=$producto->traerTercerFavorito($cant);
+        $cod = '';
+        foreach ($data as $item) {
+            $cod = $item[0];
+        }
+        
+        $art['fav'] = $producto->traerArticulo($cod);
+        $this->view->show("mostrarFavoritosInicio.php", $art);
     }
 
     public function guardarFavoritoVentas(){

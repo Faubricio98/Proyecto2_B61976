@@ -3,26 +3,43 @@
 ?>
 
 <h1 class="text-center">
-    Centro de Limpieza Don Limpio
+    Centro de limpieza Don Limpio
 </h1>
 
 <div class="row" style="margin-top: 2em;">
     <div class="col-md-1"></div>
-    <div class="col-md-4">
-        <legend class="text-center">Administrador</legend>
-        <input id="userAdmin" class="form-control" type="text" placeholder="Nombre de usuario">
-        <input id="passAdmin" class="form-control" type="password" placeholder="Contraseña">
-        <button id="logInAdm" onclick="logAdm($('#userAdmin').val(), $('#passAdmin').val())" class="btn btn-primary">Log In</button>
-        <span id="resultadoA"></span>
-    </div>
-    <div class="col-md-2"></div>
-    <div class="col-md-4">
-        <legend class="text-center">Cliente</legend>
-        <input id="userClient" class="form-control" type="text" placeholder="Nombre de usuario o correo">
-        <input id="passClient" class="form-control" type="password" placeholder="Contraseña">
-        <button id="logInClient" onclick="logInCliente($('#userClient').val(), $('#passClient').val())" class="btn btn-primary">Log In</button>
-        <button id="signInClient" onclick="signInCliente()" class="btn btn-primary">Sign In</button>
-        <span id="resultadoC"></span>
+    <div id="actionMenu" class="col-md-10">
+        <legend class="text-center">Te recomendamos lo que nuestros clientes prefieren</legend>
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+					<h4 class="my-0 font-weight-normal">Art&iacute;culo favorito 1</h4>
+				</div>
+                <script>primerFavorito()</script>
+                <div class="card-body">
+                    <span id="carta1"></span>
+                </div><!---->
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+					<h4 class="my-0 font-weight-normal">Art&iacute;culo favorito 2</h4>
+				</div>
+                <script>segundoFavorito()</script>
+                <div class="card-body">
+                    <span id="carta2"></span>
+                </div> <!---->
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+					<h4 class="my-0 font-weight-normal">Art&iacute;culo favorito 3</h4>
+				</div>
+                <script>tercerFavorito()</script>
+                <div class="card-body">
+                    <span id="carta3"></span>
+                </div>
+            </div>
+        </div>
+        <span id="respuesta"></span>
     </div>
     <div class="col-md-1"></div>
 </div>

@@ -53,6 +53,18 @@ class ClienteController{
         }
     }
 
+    public function generarCodigoPostalCliente(){
+        //debo llamar al model
+        require 'model/ClienteModel.php';
+        $cliente = new ClienteModel();
+
+        $data = $cliente->obtenerNombreProvincia($_POST['prov']);
+        $provincia = '';
+        foreach ($data as $item) {
+            $provincia = $item[0];
+        }
+    }
+
 }
 
 ?>

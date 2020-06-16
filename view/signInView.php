@@ -24,7 +24,7 @@
 </div>
 <!--modal para invitar a amigos-->
     <div class="col-sm"></div>
-    <div class="col-sm-5">
+    <div class="col-sm-6">
         <legend class="text-center">Reg&iacute;strese para ser un nuevo usuario Don Limpio</legend>
         <input id="nameU" class="form-control" type="text" placeholder="Nombre">
         <input id="apelUser" class="form-control" type="text" placeholder="Apellidos">
@@ -52,6 +52,9 @@
             </div>
             <div class="col">
                 <input id="distritoUser" class="form-control" type="text" placeholder="Distrito">
+            </div>
+            <div class="col">
+                <input id="postal_code" class="form-control" type="text" placeholder="Código Postal">
             </div>
         </div>
         <input id="addressUser" class="form-control" type="text" placeholder="Dirección">
