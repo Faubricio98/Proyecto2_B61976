@@ -1,3 +1,77 @@
+@media ( max-width : 768px ){
+	button#btnBuscar, #btnCollapse, #btnReserva{
+		font-size: 1em !important;
+	}
+
+	button#btnBonus1, #btnBonus2, #btnBonus3, #btnBonus4{
+		font-size: 0.5em;
+	}
+
+	div#divTicketFac{
+		margin-left: 0.75em;
+		margin-bottom: 0.75em;
+	}
+
+	.col-md-2{
+		margin-bottom: 0.5em;
+	}
+
+	.col-md-5{
+		margin-bottom: 0.5em;
+	}
+
+	.col-md-6{
+		margin-bottom: 0.5em;
+	}
+}
+
+@media ( max-width : 500px ){
+	button#btnBuscar{
+		margin-left: 1em;
+	}
+
+	div#divDatos, #divFactura{
+		margin-left: 0.5em;
+		margin-right: 0.5em;
+	}
+
+	.btn-primary{
+		font-size: 8pt !important;
+	}
+
+	.col-md-2{
+		margin-bottom: 0.5em;
+	}
+
+	.col-md-5{
+		margin-bottom: 0.5em;
+	}
+
+	.col-md-6{
+		margin-bottom: 0.5em;
+	}
+
+	a#btnCollapse{
+		margin-left: 7em;
+	}
+}
+
+@media ( max-width : 400px ){
+	.btn-primary{
+		font-size: 7pt !important;
+	}
+}
+
+@media ( max-width : 350px ){
+	button#btnAloj{
+		margin-left: 0.0em;
+	}
+
+	.btn-primary{
+		font-size: 6pt !important;
+	}
+}
+
 button#createUser:hover, #createProd:hover, #createCatg:hover, #createProm:hover, 
 #btnInicio:hover, #btnBuscar:hover, #btnPromocion:hover{
     color: blue;

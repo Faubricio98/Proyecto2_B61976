@@ -1,3 +1,90 @@
+function showLogIn() { 
+    document.getElementById('actionMenu').innerHTML = "";
+    $.ajax(
+        {
+            url: '?controlador=Index&accion=mostrarInicioSesionIndex',
+            type: 'post',
+            beforeSend: function () {
+                $("#actionMenu").html("Cargando ......");
+            }, //antes de enviar
+                    
+            success: function (response) {
+                $("#actionMenu").html(response);
+            } //se ha enviado
+        }
+    );
+}
+
+function primerFavorito() {
+    $.ajax(
+        {
+            url: '?controlador=Ventas&accion=mostrarPrimerFavoritoInicioVentas',
+            type: 'post',
+            beforeSend: function () {
+                $("#carta1").html("Buscando favoritos ...");
+            }, //antes de enviar
+                    
+            success: function (response) {
+                $("#carta1").html(response);
+            } //se ha enviado
+        }
+    );
+}
+
+function segundoFavorito() { 
+    $.ajax(
+        {
+            url: '?controlador=Ventas&accion=mostrarSegundoFavoritoInicioVentas',
+            type: 'post',
+            beforeSend: function () {
+                $("#carta2").html("Buscando favoritos ...");
+            }, //antes de enviar
+                    
+            success: function (response) {
+                $("#carta2").html(response);
+            } //se ha enviado
+        }
+    );
+}
+
+function tercerFavorito() { 
+    $.ajax(
+        {
+            url: '?controlador=Ventas&accion=mostrarTercerFavoritoInicioVentas',
+            type: 'post',
+            beforeSend: function () {
+                $("#carta3").html("Buscando favoritos ...");
+            }, //antes de enviar
+                    
+            success: function (response) {
+                $("#carta3").html(response);
+            } //se ha enviado
+        }
+    );
+}
+
+function btnGenerarZIP() {
+    var dist = document.getElementById('distritoUser').value;
+    var cant = document.getElementById('cantonUser').value;
+    var prov = document.getElementById('provincia').value;
+
+    parametros = { "dist": dist, "cant": cant, "prov": prov };
+    $.ajax(
+        {
+            data: parametros,
+            url: '?controlador=Cliente&accion=generarCodigoPostalCliente',
+            type: 'post',
+            beforeSend: function () {
+                $("#postal_code").html("Buscando ...");
+            }, //antes de enviar
+                    
+            success: function (response) {
+                $("#postal_code").html(response);
+            } //se ha enviado
+        }
+    );
+}
+
 function logAdm(userAdmin, passAdmin) {
     var parametros = { "user": userAdmin, "pass": passAdmin };
     $.ajax(

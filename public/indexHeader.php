@@ -25,6 +25,7 @@
                 <img src="public/img/my_icon.svg" style="margin-left: 50px;" width="70" height="80">
             </a>
             <legend class="the-legend">Centro de Limpieza Don Limpio</legend>
+            <button id="btnInicio" onclick="showLogIn()" class="btn text-white">Iniciar sesi&oacute;n</button>
         </nav>
     </header>
 
