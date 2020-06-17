@@ -25,19 +25,12 @@
                 <img src="public/img/my_icon.svg" style="margin-left: 50px;" width="70" height="80">
             </a>
             <div class="container">
-                <span class="text-white py-4" id="myUserCliente" style="margin-top: 1em; width: 25%;">
-                    Bienvenido
+                <span class="text-white" id="myUserCliente" style="margin-top: 1em;">
                     <?php
-                        echo $_GET['user'];
+                        echo 'Gracias, '.$_GET['user'].' por preferir a Don Limpio';
                     ?>
                 </span>
                 <button id="btnInicio" class="btn text-white" onclick="btnInicio()">Inicio</button>
-                <button id="btnBuscar" class="btn text-white" onclick="btnBuscar()">Buscar</button>
-                <button id="btnPromocion" class="btn text-white" onclick="btnPromocion()">Promociones</button>
-                <button id="btnBuscar" class="btn text-white" onclick="btnBuscar()">Buscar</button>
-                <a class="navbar-brand" href="#">
-                    <img src="public/img/my_icon.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-                </a>
             </div>
         </nav>
     </header>

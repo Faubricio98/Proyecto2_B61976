@@ -194,6 +194,61 @@ class VentasController{
         }        
     }
 
+    public function mostrarInfoCompraVentas(){
+        require 'model/VentasModel.php';
+        $producto = new VentasModel();
+        $data['articulo'] = $producto->buscarArticulo($_POST['cod']);
+        $this->view->show("mostrarInfoCompra.php", $data);
+    }
+
+    public function verInfoClienteVentas(){
+        require 'model/VentasModel.php';
+        $cliente = new VentasModel();
+        $data['cliente'] = $cliente->obtenerCliente($_POST['user']);
+        $this->view->show("mostrarInfoCliente.php", $data);
+    }
+
+    public function mostrarFacturaVentas(){
+        $this->view->show("compraView.php", null);
+    }
+
+    public function pagarFacturaVentas(){
+        require 'model/VentasModel.php';
+        $cliente = new VentasModel();
+        $cliente->pagarFactura($_POST['cod'], $_POST['cant'], $_POST['user']);
+        echo 'Pagado';
+    }
+
+    public function obtenerFacturaVentas(){
+        require 'model/VentasModel.php';
+        $factura = new VentasModel();
+        $data = $factura->obtenerFactura($_POST['user']);
+        foreach ($data as $item) {
+            echo $item[0];
+        }
+    }
+
+    public function verProductoCompraVentas(){
+        require 'model/VentasModel.php';
+        $producto = new VentasModel();
+        $data['articulo'] = $producto->buscarArticulo($_POST['cod']);
+
+        foreach ($data['articulo'] as $item) {
+            echo 'Nombre: '.$item[1];
+        }
+        //$this->view->show("mostrarCompra.php", $data);
+    }
+
+    public function verPrecioCompraVentas(){
+        require 'model/VentasModel.php';
+        $producto = new VentasModel();
+        $data['articulo'] = $producto->buscarArticulo($_POST['cod']);
+
+        foreach ($data['articulo'] as $item) {
+            echo $item[2];
+        }
+    }
+
 }
 
 ?>

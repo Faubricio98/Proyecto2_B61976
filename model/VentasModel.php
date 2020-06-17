@@ -122,6 +122,27 @@ class VentasModel{
         $consulta->closeCursor();
         return $resultado;
     }
+
+    public function obtenerCliente($user){
+        $consulta= $this->db->prepare("call sp_get_cliente('".$user."')");
+        $consulta->execute();
+        $resultado=$consulta->fetchAll();
+        $consulta->closeCursor();
+        return $resultado;
+    }
+
+    public function pagarFactura($cod, $cant, $user){
+        $consulta= $this->db->prepare("call sp_registrar_venta('".$cod."', '".date("yy-m-d")."', ".$cant.", '".$user."')");
+        $consulta->execute();
+    }
+
+    public function obtenerFactura($user){
+        $consulta= $this->db->prepare("call sp_get_cod_factura('".$user."')");
+        $consulta->execute();
+        $resultado=$consulta->fetchAll();
+        $consulta->closeCursor();
+        return $resultado;
+    }
 }
 
 ?>
