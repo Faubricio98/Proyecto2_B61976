@@ -579,15 +579,49 @@ function crearModo() {
         var btnCreate = document.createElement("button");
         btnCreate.setAttribute("id", "btnCreate");
         btnCreate.setAttribute("class", "btn btn-primary");
-        btnCreate.setAttribute("onclick", "");
+        btnCreate.setAttribute("onclick", "buscarFechas()");
         btnCreate.innerHTML = "Ver ventas";
         document.getElementById("modoBusca").append(btnCreate);
+
+        var spanRes = document.createElement('span');
+        spanRes.setAttribute("id", "spanRes");
+        document.getElementById("modoBusca").append(spanRes);
     }
 }
 
 function buscarMesAnno() { 
     var myMonth = document.getElementById('myMonth');
     var myYear = document.getElementById('myYear');
+}
+
+function buscarFechas() {
+    var dateS = document.getElementById('dateStart').value;
+    var dateE = document.getElementById('dateEnd').value;
+
+    if (dateS == '') {
+        document.getElementById('spanRes').innerHTML = "Ingrese las fechas correctamente";
+    } else { 
+        if (dateE == '') {
+            document.getElementById('spanRes').innerHTML = "Ingrese las fechas correctamente";
+        } else { // todo está bien
+            parametros = { "ds": dateS, "de": dateE }
+            $.ajax(
+                {
+                    data: parametros,
+                    url: '?controlador=Administrador&accion=verVentasAdministrador',
+                    type: 'post',
+                    beforeSend: function () {
+                        $("#modoBusca").html("Buscando ...");
+                    }, //antes de enviar
+                                    
+                    success: function (response) {
+                        document.getElementById("modoBusca").innerHTML = " ";
+                        $("#modoBusca").html(response);
+                    } //se ha enviado
+                }
+            ); //ajax
+        }
+    }
 }
 
 function btnCrearCliente(nom, apel, age, cant, dist, dir, user, mail, pass, cPass) { 

@@ -100,6 +100,13 @@ class AdministradorController{
         $data['myList']=$ver->verProductos();
         $this->view->show("verTablaProducto.php", $data);
     }
+
+    public function verVentasAdministrador(){
+        require 'model/AdministradorModel.php';
+        $ver = new AdministradorModel();
+        $data['ventas']=$ver->verVentas($_POST['ds'], $_POST['de']);
+        $this->view->show("verTablaVentas.php", $data);
+    }
 }
 
 ?>
