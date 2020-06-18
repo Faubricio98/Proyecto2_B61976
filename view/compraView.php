@@ -9,7 +9,7 @@
             <img src="public/img/my_icon.svg" width="30" height="30">
             Factura - <span id="codFac"></span>
         </legend>
-        <span>Producto</span>
+        <span>Producto</span> <br>
         <span id="codProducto"></span> <br>
         <span id="nomProducto"></span> <br>
         <span id="cantProducto"></span> <br>

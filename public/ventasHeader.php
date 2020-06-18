@@ -33,11 +33,11 @@
                 </span>
                 <button id="btnInicio" class="btn text-white" onclick="btnInicio()">Inicio</button>
                 <button id="btnBuscar" class="btn text-white" onclick="btnBuscar()">Buscar</button>
-                <button id="btnPromocion" class="btn text-white" onclick="btnPromocion()">Promociones</button>
-                <button id="btnBuscar" class="btn text-white" onclick="btnBuscar()">Buscar</button>
-                <a class="navbar-brand" href="#">
-                    <img src="public/img/my_icon.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-                </a>
+                <button id="btnBuscar" class="btn text-white" onclick="btnHistorial()">Historial</button>
+                <button id="btnInicio" class="btn text-white" onclick="btnVerCarrito()">
+                    <img src="public/img/my_cart.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+                </button>
+                <button id="btnInicio" class="btn text-white" onclick="btnCerrarSesion()">Cerrar sesi&oacute;n</button>
             </div>
         </nav>
     </header>

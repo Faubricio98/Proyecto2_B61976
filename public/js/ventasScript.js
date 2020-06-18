@@ -1,3 +1,28 @@
+function btnCerrarSesion() { 
+    window.location.href = 'index.php';
+}
+
+function btnVerCarrito() { 
+    document.getElementById('actionMenu').innerHTML = "";
+    var mySpan = document.getElementById('myUserCliente').innerText;
+    var my_user = mySpan.split(" ");
+    parametros = { "user": my_user[1] }
+    $.ajax(
+        {
+            data: parametros,
+            url: '?controlador=Ventas&accion=obtenerClienteCarritoVentas',
+            type: 'post',
+            beforeSend: function () {
+                $("#actionMenu").html("Trayendo del almacén tus artículos ......");
+            }, //antes de enviar
+                    
+            success: function (response) {
+                $("#actionMenu").html(response);
+            } //se ha enviado
+        }
+    );
+}
+
 function optionsCantidad() { 
     var my_select = document.getElementById('cantidad');
     var init_option = document.createElement('option');
@@ -40,8 +65,150 @@ function btnInicio() {
 }
 
 function btnBuscar() { 
-    var mainDiv = document.getElementById('actionMenu').innerHTML = '';
+    document.getElementById('actionMenu').innerHTML = '';
+    var legCreateUser = document.createElement("legend");
+    legCreateUser.setAttribute("class", "text-center");
+    legCreateUser.innerHTML = "Buscar productos";
+    document.getElementById("actionMenu").append(legCreateUser);
 
+    var divNew = document.createElement('div');
+    divNew.setAttribute("class", "row");
+    divNew.setAttribute("id", "divNewRow");
+    document.getElementById("actionMenu").append(divNew);
+
+    var divNew = document.createElement('div');
+    divNew.setAttribute("class", "col-md-3");
+    document.getElementById("divNewRow").append(divNew);
+
+    var divNew = document.createElement('div');
+    divNew.setAttribute("class", "col-md-6");
+    divNew.setAttribute("id", "divNew");
+    document.getElementById("divNewRow").append(divNew);
+
+    var divNew = document.createElement('div');
+    divNew.setAttribute("class", "col-md-3");
+    document.getElementById("divNewRow").append(divNew)
+
+    var inputBusca = document.createElement('input');
+    inputBusca.setAttribute("class", "form-control");
+    inputBusca.setAttribute("id", "inputBusca");
+    inputBusca.setAttribute("style", "margin-bottom: 1em;");
+    inputBusca.setAttribute("placeholder", "Ingrese el nombre o la categoría del producto que busca");
+    document.getElementById("divNew").append(inputBusca);
+
+    var divRadio = document.createElement("div");
+    divRadio.setAttribute("class", "form-check form-check-inline col-sm-10");
+    var inputR1 = document.createElement("input");
+    inputR1.setAttribute("class", "form-check-input");
+    inputR1.setAttribute("type", "radio");
+    inputR1.setAttribute("name", "inlineRadioOptions");
+    inputR1.setAttribute("id", "inlineRadio1");
+    inputR1.setAttribute("value", "option1");
+    var labelR1 = document.createElement("label");
+    labelR1.setAttribute("class", "form-check-label");
+    labelR1.setAttribute("for", "inlineRadio1");
+    labelR1.innerHTML = "Precio ascendente";
+    divRadio.appendChild(inputR1);
+    divRadio.appendChild(labelR1);
+    document.getElementById("divNew").append(divRadio);
+
+    var divRadio = document.createElement("div");
+    divRadio.setAttribute("class", "form-check form-check-inline col-sm-10");
+    var inputR1 = document.createElement("input");
+    inputR1.setAttribute("class", "form-check-input");
+    inputR1.setAttribute("type", "radio");
+    inputR1.setAttribute("name", "inlineRadioOptions");
+    inputR1.setAttribute("id", "inlineRadio2");
+    inputR1.setAttribute("value", "option2");
+    var labelR1 = document.createElement("label");
+    labelR1.setAttribute("class", "form-check-label");
+    labelR1.setAttribute("for", "inlineRadio2");
+    labelR1.innerHTML = "Precio descendente";
+    divRadio.appendChild(inputR1);
+    divRadio.appendChild(labelR1);
+    document.getElementById("divNew").append(divRadio);
+
+    var btnCreate = document.createElement("button");
+    btnCreate.setAttribute("id", "btnCreate");
+    btnCreate.setAttribute("class", "btn btn-primary");
+    btnCreate.setAttribute("onclick", "mostrarBusqueda()");
+    btnCreate.innerHTML = "Buscar productos"
+    document.getElementById("divNew").append(btnCreate);
+
+    var divModo = document.createElement("div");
+    divModo.setAttribute("id", "modoBusca");
+    divModo.setAttribute("style", "margin-top: 2em;");
+    document.getElementById("actionMenu").append(divModo);
+}
+
+function mostrarBusqueda() { 
+    document.getElementById("modoBusca").innerHTML = " ";
+    var mySearch = document.getElementById('inputBusca').value;
+    var radio1 = document.getElementById("inlineRadio1");
+    var radio2 = document.getElementById("inlineRadio2");
+
+    if (mySearch == '') {
+        document.getElementById("modoBusca").innerHTML = "Ingrese un nombre o una categoría";
+    } else { 
+        if (radio1.checked) {
+            parametros = { "search": mySearch, "precio": 1 }
+            $.ajax(
+                {
+                    data: parametros,
+                    url: '?controlador=Ventas&accion=buscarArticuloPrecioVentas',
+                    type: 'post',
+                    beforeSend: function () {
+                        $("#modoBusca").html("Trayendo los artículos del almacén ......");
+                    }, //antes de enviar
+                            
+                    success: function (response) {
+                        $("#modoBusca").html(response);
+                    } //se ha enviado
+                }
+            );
+        } else { 
+            if (radio2.checked) {
+                parametros = { "search": mySearch, "precio": 2 }
+                $.ajax(
+                    {
+                        data: parametros,
+                        url: '?controlador=Ventas&accion=buscarArticuloPrecioVentas',
+                        type: 'post',
+                        beforeSend: function () {
+                            $("#modoBusca").html("Trayendo los artículos del almacén ......");
+                        }, //antes de enviar
+                                
+                        success: function (response) {
+                            $("#modoBusca").html(response);
+                        } //se ha enviado
+                    }
+                );
+            } else { 
+                document.getElementById("modoBusca").innerHTML = "Seleccione la forma en la que deben aparecer los artículos";
+            }
+        }
+    }
+}
+
+function btnHistorial() { 
+    document.getElementById('actionMenu').innerHTML = '';
+    var spanC = document.getElementById("myUserCliente").innerText;
+    var my_user = spanC.split(' ');
+    parametros = { "user": my_user[1] }
+    $.ajax(
+        {
+            data: parametros,
+            url: '?controlador=Ventas&accion=mostrarHistorialVentas',
+            type: 'post',
+            beforeSend: function () {
+                $("#actionMenu").html("Mostrando tus facturas ......");
+            }, //antes de enviar
+                    
+            success: function (response) {
+                $("#actionMenu").html(response);
+            } //se ha enviado
+        }
+    );
 }
 
 function btnComprar(button) {
@@ -113,7 +280,7 @@ function btnCarrito(button) {
     $.ajax(
         {
             data: parametros,
-            url: '?controlador=Ventas&accion=mostrarInfoCompraVentas',
+            url: '?controlador=Ventas&accion=guardarCarritoVentas',
             type: 'post',
             beforeSend: function () {
                 $("#respuesta").html("Carrito ...");

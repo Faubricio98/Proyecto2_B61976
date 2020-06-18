@@ -101,10 +101,17 @@ class AdministradorController{
         $this->view->show("verTablaProducto.php", $data);
     }
 
-    public function verVentasAdministrador(){
+    public function verVentasFechasAdministrador(){
         require 'model/AdministradorModel.php';
         $ver = new AdministradorModel();
-        $data['ventas']=$ver->verVentas($_POST['ds'], $_POST['de']);
+        $data['ventas']=$ver->verVentasFechas($_POST['ds'], $_POST['de']);
+        $this->view->show("verTablaVentas.php", $data);
+    }
+
+    public function verVentasMesAnnoAdministrador(){
+        require 'model/AdministradorModel.php';
+        $ver = new AdministradorModel();
+        $data['ventas']=$ver->verVentasMesAnno($_POST['mes'], $_POST['year']);
         $this->view->show("verTablaVentas.php", $data);
     }
 }
