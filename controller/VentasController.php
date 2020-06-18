@@ -270,6 +270,34 @@ class VentasController{
         $this->view->show("verTablaVentas.php", $data);
     }
 
+    public function getTipoCambioVentas(){
+        try {
+            $url = "https://gee.bccr.fi.cr/Indicadores/Suscripciones/WS/wsindicadoreseconomicos.asmx?wsdl";
+            $params = array(
+                'Indicador' => '317',
+                'FechaInicio' => date("d/m/yy"),
+                'FechaFinal' => date("d/m/yy"),
+                'Nombre' => 'FaubricioChavesHernandez',
+                'SubNiveles' => 'N',
+                'CorreoElectronico' => 'faubricio98@gmail.com',
+                'Token' => '01I6DA8LO2'
+            );
+            $sc = new SoapClient($url);
+            $res = $sc->ObtenerIndicadoresEconomicosXML($params);
+            $arr = json_decode(json_encode($res), true);
+            $myJS = json_encode($arr['ObtenerIndicadoresEconomicosXMLResult']);
+            list($p1, $p2) = preg_split("</DES_FECHA>", $myJS);
+            $a1 = preg_split("/[\s,]+/", $p2);
+            $a2 = preg_split("/[\s,]+/", $a1[1]);
+            //$a3 = preg_split("NUM_VALOR", $a2[0]);
+            //print_r($a2);
+            echo $a2[0];
+            
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
 }
 
 ?>

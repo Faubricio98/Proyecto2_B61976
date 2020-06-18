@@ -24,6 +24,8 @@
                 <span>Nombre: <?php echo $item[1] ?> </span> <br>
                 <span>C&oacute;digo: <?php echo $item[0] ?> </span> <br>
                 <span>Precio: $<?php echo $item[2] ?>/unidad </span> <br>
+                <span id="colones"></span> <br>
+                <script>calculaCambio(<?php echo $item[2]; ?>)</script>
                 <script>optionsCantidad()</script>
                 <span>Categor&iacute;a: <?php echo $item[3] ?> </span> <br>
             </div>

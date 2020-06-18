@@ -1,4 +1,42 @@
-function showLogIn() { 
+function tipoCambio() {
+    $.ajax(
+        {
+            url: '?controlador=Ventas&accion=getTipoCambioVentas',
+            type: 'post',
+            beforeSend: function () {
+                $("#tipoCambio").html("Calculando ......");
+            }, //antes de enviar
+                    
+            success: function (response) {
+                var cambio = response.split('0');
+                $("#tipoCambio").html(cambio[0]);
+                //alert(parseFloat(cc));
+            } //se ha enviado
+        }
+    );
+}
+
+function calculaCambio(dolar) {
+    $.ajax(
+        {
+            url: '?controlador=Ventas&accion=getTipoCambioVentas',
+            type: 'post',
+            beforeSend: function () {
+                $("#colones").html("Calculando ......");
+            }, //antes de enviar
+                    
+            success: function (response) {
+                var cambio = response.split('0');
+                $("#colones").html(cambio[0]);
+                var col = document.getElementById('colones').innerText;
+                document.getElementById('colones').innerText = parseFloat(col * dolar);
+            } //se ha enviado
+        }
+    );
+}
+
+
+function showLogIn() {
     document.getElementById('actionMenu').innerHTML = "";
     $.ajax(
         {

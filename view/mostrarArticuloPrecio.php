@@ -13,6 +13,9 @@
                     <legend><?php echo $item[1]; ?></legend>
                     <span>C&oacute;digo: <?php echo $item[0]; ?></span> <br>
                     <span>Precio: $<?php echo $item[2]; ?></span><br>
+                    <span id="<?php echo $item[0]; ?>">
+                        <script id>calculaCambioArt('<?php echo $item[2];?>', '<?php echo $item[0];?>')</script>
+                    </span> <br>
                     <span>Categor&iacute;a: <?php echo $item[3]; ?></span><br>
                     <button type="button" class="btn btn-primary text-center" style="margin-bottom: 1em; margin-top: 1em; font-size: 0.8em; width: 100%" id="<?php echo $item[0];?>" onclick="btnCompra(this)">
                         <img src="public/img/my_buy.svg" width="20" height="20">
