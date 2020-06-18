@@ -1,3 +1,59 @@
+function tipoCambio() {
+    $.ajax(
+        {
+            url: '?controlador=Ventas&accion=getTipoCambioVentas',
+            type: 'post',
+            beforeSend: function () {
+                $("#tipoCambio").html("Calculando ......");
+            }, //antes de enviar
+                    
+            success: function (response) {
+                var cambio = response.split('0');
+                $("#tipoCambio").html(cambio[0]);
+                //alert(parseFloat(cc));
+            } //se ha enviado
+        }
+    );
+}
+
+function calculaCambio(dolar) {
+    $.ajax(
+        {
+            url: '?controlador=Ventas&accion=getTipoCambioVentas',
+            type: 'post',
+            beforeSend: function () {
+                $("#colones").html("Calculando ......");
+            }, //antes de enviar
+                    
+            success: function (response) {
+                var cambio = response.split('0');
+                $("#colones").html(cambio[0]);
+                var col = document.getElementById('colones').innerText;
+                document.getElementById('colones').innerText ='₡'+parseFloat(col * dolar);
+            } //se ha enviado
+        }
+    );
+}
+
+function calculaCambioArt(dolar, cod) {
+    $.ajax(
+        {
+            url: '?controlador=Ventas&accion=getTipoCambioVentas',
+            type: 'post',
+            beforeSend: function () {
+                $("#colones"+cod).html("Calculando ......");
+            }, //antes de enviar
+                    
+            success: function (response) {
+                var cambio = response.split('0');
+                $("#"+cod).html(cambio[0]);
+                var col = document.getElementById(cod).innerText;
+                document.getElementById(cod).innerText ='₡'+parseFloat(col * dolar);
+            } //se ha enviado
+        }
+    );
+}
+
 function btnCerrarSesion() { 
     window.location.href = 'index.php';
 }
@@ -453,6 +509,26 @@ function getFactura() {
                 $("#precioUProducto").html('Precio: $' + response);
                 document.getElementById('costoProducto').innerHTML = 'Costo Total: $' + Math.round((response * sessionStorage.getItem("cant"))*100)/100;
                 //document.getElementById('costoProducto').innerHTML = precioTotal;
+            } //se ha enviado
+        }
+    );
+
+    $.ajax(
+        {
+            url: '?controlador=Ventas&accion=getTipoCambioVentas',
+            type: 'post',
+            beforeSend: function () {
+                $("#colones").html("Calculando ......");
+            }, //antes de enviar
+                    
+            success: function (response) {
+                var cambio = response.split('0');
+                $("#colones").html(cambio[0]);
+                var col = document.getElementById('colones').innerText;
+                var cn = sessionStorage.getItem("cant");
+                var temp = document.getElementById('costoProducto').innerHTML;
+                var dol = temp.split('$');
+                document.getElementById('colones').innerText ='Precio Total: ₡'+parseFloat(col*dol[1]);
             } //se ha enviado
         }
     );

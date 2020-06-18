@@ -9,6 +9,8 @@
         <div class="col" id="infoArticulo" style="border: 2px solid gray; border-radius: 5px;">
             <h1 class="text-center"><?php echo $item[1]; ?></h1>
             <label>Precio: <h3>$<?php echo $item[2]; ?></h3> </label> <br>
+            <span id="colones"></span> <br>
+            <script>calculaCambio(<?php echo $item[2]; ?>)</script>
             <label>C&oacute;digo: <?php echo $item[0]; ?></label> <br>
             <label>Categor&iacute;a: <?php echo $item[3]; ?></label> <br>
             <label>Descripci&oacute;n: <?php echo $item[4]; ?></label>

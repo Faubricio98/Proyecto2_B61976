@@ -14,7 +14,9 @@
         <span id="nomProducto"></span> <br>
         <span id="cantProducto"></span> <br>
         <span id="precioUProducto"></span> <br>
+        <span id="colones"></span> <br>
         <span id="costoProducto"></span> <br>
+        <span id="costoProductoCol"></span> <br>
         <span id="tarjeta">Modo de pago: Transferencia</span> <br>
         <br>
         <span>Cliente</span> <br>
