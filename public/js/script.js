@@ -552,6 +552,9 @@ function crearModo() {
         btnCreate.setAttribute("onclick", "buscarMesAnno()");
         btnCreate.innerHTML = "Ver ventas";
         document.getElementById("modoBusca").append(btnCreate);
+        var spanRes = document.createElement('span');
+        spanRes.setAttribute("id", "spanRes");
+        document.getElementById("modoBusca").append(spanRes);
     }
 
     if (radio2.checked) {
@@ -589,9 +592,34 @@ function crearModo() {
     }
 }
 
-function buscarMesAnno() { 
-    var myMonth = document.getElementById('myMonth');
-    var myYear = document.getElementById('myYear');
+function buscarMesAnno() {
+    var myMonth = document.getElementById('myMonth').value;
+    var myYear = document.getElementById('myYear').value;
+    
+    if (myMonth == 0) {
+        document.getElementById('spanRes').innerHTML = "Seleccione un mes";
+    } else { 
+        if (myYear == 0) {
+            document.getElementById('spanRes').innerHTML = "Seleccione un año";
+        } else { 
+            parametros = { "mes": myMonth, "year": myYear }
+            $.ajax(
+                {
+                    data: parametros,
+                    url: '?controlador=Administrador&accion=verVentasMesAnnoAdministrador',
+                    type: 'post',
+                    beforeSend: function () {
+                        $("#modoBusca").html("Buscando ...");
+                    }, //antes de enviar
+                                    
+                    success: function (response) {
+                        document.getElementById("modoBusca").innerHTML = " ";
+                        $("#modoBusca").html(response);
+                    } //se ha enviado
+                }
+            ); //ajax
+        }
+    }
 }
 
 function buscarFechas() {
@@ -608,7 +636,7 @@ function buscarFechas() {
             $.ajax(
                 {
                     data: parametros,
-                    url: '?controlador=Administrador&accion=verVentasAdministrador',
+                    url: '?controlador=Administrador&accion=verVentasFechasAdministrador',
                     type: 'post',
                     beforeSend: function () {
                         $("#modoBusca").html("Buscando ...");
@@ -685,6 +713,7 @@ function returnToIndex() {
 
 function logInCliente(user, pass) { 
     parametros = { "user": user, "pass": pass }
+    sessionStorage.setItem("user", user);
     $.ajax(
         {
             data: parametros,

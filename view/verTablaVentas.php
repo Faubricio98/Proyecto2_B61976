@@ -1,3 +1,4 @@
+<legend class="text-center">Estas son las compras registradas</legend>
 <table class="table">
     <thead>
         <tr>

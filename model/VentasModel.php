@@ -143,6 +143,39 @@ class VentasModel{
         $consulta->closeCursor();
         return $resultado;
     }
+
+    public function obtenerClienteCarrito($user){
+        $consulta= $this->db->prepare("call sp_get_carrito('".$user."')");
+        $consulta->execute();
+        $resultado=$consulta->fetchAll();
+        $consulta->closeCursor();
+        return $resultado;
+    }
+
+    public function buscarArticuloPrecio($search, $precio){
+        if ($precio == 1) {
+            $consulta= $this->db->prepare("call sp_get_producto_asc('".$search."')");
+            $consulta->execute();
+            $resultado=$consulta->fetchAll();
+            $consulta->closeCursor();
+            return $resultado;
+        }
+        if ($precio == 2) {
+            $consulta= $this->db->prepare("call sp_get_producto_desc('".$search."')");
+            $consulta->execute();
+            $resultado=$consulta->fetchAll();
+            $consulta->closeCursor();
+            return $resultado;
+        }
+    }
+
+    public function mostrarHistorial($user){
+        $consulta= $this->db->prepare("call sp_get_historial_ventas('".$user."')");
+        $consulta->execute();
+        $resultado=$consulta->fetchAll();
+        $consulta->closeCursor();
+        return $resultado;
+    }
 }
 
 ?>

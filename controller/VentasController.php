@@ -249,6 +249,27 @@ class VentasController{
         }
     }
 
+    public function obtenerClienteCarritoVentas(){
+        require 'model/VentasModel.php';
+        $carrito = new VentasModel();
+        $data['carrito'] = $carrito->obtenerClienteCarrito($_POST['user']);
+        $this->view->show("mostrarCarrito.php", $data);
+    }
+
+    public function buscarArticuloPrecioVentas(){
+        require 'model/VentasModel.php';
+        $carrito = new VentasModel();
+        $data['articulo'] = $carrito->buscarArticuloPrecio($_POST['search'], $_POST['precio']);
+        $this->view->show("mostrarArticuloPrecio.php", $data);
+    }
+
+    public function mostrarHistorialVentas(){
+        require 'model/VentasModel.php';
+        $carrito = new VentasModel();
+        $data['ventas'] = $carrito->mostrarHistorial($_POST['user']);
+        $this->view->show("verTablaVentas.php", $data);
+    }
+
 }
 
 ?>

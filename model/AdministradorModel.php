@@ -61,8 +61,16 @@ class AdministradorModel{
         return $resultado;
     }
 
-    public function verVentas($ds, $de){
+    public function verVentasFechas($ds, $de){
         $consulta= $this->db->prepare("call sp_get_ventas_fechas('".$ds."', '".$de."')");
+        $consulta->execute();
+        $resultado=$consulta->fetchAll();
+        $consulta->closeCursor();
+        return $resultado;
+    }
+
+    public function verVentasMesAnno($mes, $year){
+        $consulta= $this->db->prepare("call sp_get_venta_mes_anno('".$mes."', '".$year."')");
         $consulta->execute();
         $resultado=$consulta->fetchAll();
         $consulta->closeCursor();
